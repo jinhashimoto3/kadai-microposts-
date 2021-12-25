@@ -21,15 +21,19 @@ class UsersController extends Controller
     
      public function show($id)
     {
-        // idの値でユーザを検索して取得
         $user = User::findOrFail($id);
 
-        // ユーザ詳細ビューでそれを表示
+        $user->loadRelationshipCounts();
+
+        $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(10);
+
         return view('users.show', [
             'user' => $user,
+            'microposts' => $microposts,
         ]);
     }
-
+    
+    
     
     
     
