@@ -12,6 +12,7 @@
                 @include('microposts.form')
                 {{-- 投稿一覧 --}}
                 @include('microposts.microposts')
+                @include('favorite.favorite_button')
             </div>
         </div>
     @else
